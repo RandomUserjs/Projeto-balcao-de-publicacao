@@ -1,7 +1,7 @@
-import sys
-import termios
 import os
+import sys
 import time
+import sqlite3
 from Categorias.publicacao import Publicacao
 
 def tela_de_boas_vindas():
