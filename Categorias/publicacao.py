@@ -2,7 +2,7 @@ class Publicacao:
     publicacoes = []
     def __init__(self, titulo, codigo, quantidade):
         self._titulo = titulo.title()
-        self._codigo = codigo
+        self._codigo = codigo.lower()
         self._quantidade = quantidade
         Publicacao.publicacoes.append(self)
     
@@ -11,7 +11,7 @@ class Publicacao:
         return self._titulo
     @property
     def codigo(self):
-        return self._codigo.lower()
+        return self._codigo
     @property
     def quantidade(self):
         return self._quantidade
@@ -24,7 +24,26 @@ class Publicacao:
             print(f"{"Código".ljust(10)} | {"Título".ljust(30)} | Quantidade")
             for publicacao in cls.publicacoes:
                 print(f"{publicacao.codigo.ljust(10)} | {publicacao._titulo.ljust(30)} | {publicacao._quantidade}")
+
+    def para_dicionario(self) -> dict:
+        """Converte a instância da Publicacao em um dicionário para salvamento."""
+        return {
+            "titulo": self.titulo,
+            "codigo": self.codigo,
+            "quantidade": self.quantidade
+        }
     
+    @classmethod
+    def de_dicionario(cls, data: dict):
+        """Cria uma nova instância de Publicacao a partir de um dicionário."""
+        # 'cls' aqui é uma referência à própria classe Publicacao
+        return cls(
+            titulo=data["titulo"],
+            codigo=data["codigo"],
+            quantidade=data["quantidade"]
+        )
+
+
     @classmethod
     def remover_publicacao(cls, codigo):
         for publicacao in cls.publicacoes:

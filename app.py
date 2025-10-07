@@ -3,6 +3,7 @@ import sys
 import time
 import sqlite3
 from Categorias.publicacao import Publicacao
+from Session.session_manager import configurar_base_de_dados, salvar_sessao, carregar_sessao
 
 def tela_de_boas_vindas():
     print("Seja bem-vindo ao\n")
@@ -150,6 +151,7 @@ def menu_principal():
         Publicacao.remover_publicacao(codigo)
         retornar_ao_menu()
     elif opcao_escolhida == 4:
+        salvar_sessao(Publicacao.publicacoes)
         print("\nTchau! ;)")
         time.sleep(1)
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -158,6 +160,9 @@ def menu_principal():
         menu_principal()
 
 def __main__():
+    for dicio in carregar_sessao().get('publicacoes_salvas', []):
+        Publicacao.de_dicionario(dicio)
+    configurar_base_de_dados()
     tela_de_boas_vindas() 
     menu_principal()  
     
