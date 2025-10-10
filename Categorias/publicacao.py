@@ -1,10 +1,8 @@
 class Publicacao:
-    publicacoes = []
     def __init__(self, titulo, codigo, quantidade):
         self._titulo = titulo.title()
         self._codigo = codigo.lower()
         self._quantidade = quantidade
-        Publicacao.publicacoes.append(self)
     
     @property
     def titulo(self):
@@ -59,8 +57,8 @@ class Publicacao:
             elif codigo == "":
                 print("Erro! Digite um código.")
                 return
-            else:
-                print(f"Nenhuma publicação foi encontrada com o código '{codigo}'.")
+        else:
+            print(f"Nenhuma publicação foi encontrada com o código '{codigo}'.")
                 
     @classmethod
     def editar_quantidade(cls, codigo, nova_quantidade):

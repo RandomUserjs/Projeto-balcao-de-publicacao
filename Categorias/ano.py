@@ -38,6 +38,11 @@ class Ano:
             print("Número do mês inválido. Deve ser entre 1 e 12.")
             return None
     
+    def para_dicionario(self):
+        for mes in self._meses:
+            mes.para_dicionario()
+        return 
+    
     @classmethod
     def remover_ano(cls, obj_ano):
         for obj_ano in cls.anos:
