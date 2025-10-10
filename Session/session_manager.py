@@ -7,6 +7,12 @@ except Exception:
     # Se platformdirs não estiver disponível (ambiente mínimo), usa fallback
     def user_data_dir(app_name, app_author=None):
         # padrão Linux: ~/.local/share/<app_name>
+        if os.name == 'nt':
+            base = os.getenv('LOCALAPPDATA') or os.getenv('APPDATA') or os.path.expanduser('~')
+            if app_author:
+                return os.path.join(base, app_author, app_name)
+            return os.path.join(base, app_name)
+        # POSIX (Linux / macOS) fallback
         return os.path.join(os.path.expanduser('~'), '.local', 'share', app_name)
 from Categorias.publicacao import Publicacao
 from Categorias.ano import Ano
