@@ -90,3 +90,8 @@ py app.py
 
 > [!NOTE]
 > Caso você feche o terminal, é preciso ativar o ambiente virtual novamente, utilizando o mesmo comando que na primeira vez, não é necessário criar o ambiente virtual novamente.
+
+## Todo:
+
+- [ ] Implementar funcão de relatório
+- [ ] Criar uma gui para o aplicativo
